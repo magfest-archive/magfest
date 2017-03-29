@@ -25,7 +25,7 @@
 <h2>Treasury Information</h2>
 
 <form method="post" action="allotments">
-{% csrf_token %}
+{{ csrf_token() }}
 <input type="checkbox" name="needs" value="yes" onClick="showOrHideForm()" /> Check this box if your department needs cash and/or MPoints, otherwise just submit this form to let us know you DON'T need any <br/>
 <input type="checkbox" name="defer" value="yes" onClick="showOrHideForm()" /> Check this box if someone else is filling out this form for your department (seriously, don't everyone just check this!) <br/>
 <div id="formcontent" style="display:none">
@@ -160,25 +160,25 @@
         <br/> <br/>
         Number of cash boxes your department needs at one time:
         <input type="text" name="cash_boxes" size="3" />
-        
+
         <br/> <br/>
         For each cash box you recieve:
         <table style="width:auto">
         <tr>
             <td>Number of $1 Bills</td>
-            <td><input type="text" name="1bills" size="3" /></td>
+            <td><input type="text" name="bills_1" size="3" /></td>
         </tr>
         <tr>
             <td>Number of $5 Bills</td>
-            <td><input type="text" name="5bills" size="3" /></td>
+            <td><input type="text" name="bills_5" size="3" /></td>
         </tr>
         <tr>
             <td>Number of $10 Bills</td>
-            <td><input type="text" name="10bills" size="3" /></td>
+            <td><input type="text" name="bills_10" size="3" /></td>
         </tr>
         <tr>
             <td>Number of $20 Bills</td>
-            <td><input type="text" name="20bills" size="3" /></td>
+            <td><input type="text" name="bills_20" size="3" /></td>
         </tr>
         </table>
     </div>
