@@ -20,5 +20,5 @@ class TestCosts:
 
     def test_age_discount_overrides_half_price(self, monkeypatch):
         # Age group discount is greater than half off: badge price based on age discount instead
-        monkeypatch.setattr(Attendee, 'age_group_conf', {'discount': 30})
+        monkeypatch.setattr(Attendee, 'age_group_conf', {'val': c.UNDER_13, 'discount': 30})
         assert 10 == Attendee(age_group=c.UNDER_13).badge_cost
