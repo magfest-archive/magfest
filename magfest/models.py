@@ -13,6 +13,7 @@ class Attendee:
                 return -half_off
         return -self.age_group_conf['discount']
 
+
 @Session.model_mixin
 class Band:
     @property
