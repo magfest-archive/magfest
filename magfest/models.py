@@ -12,3 +12,11 @@ class Attendee:
             if not self.age_group_conf['discount'] or self.age_group_conf['discount'] < half_off:
                 return -half_off
         return -self.age_group_conf['discount']
+
+
+@Session.model_mixin
+class Band:
+    @property
+    def panel_status(self):
+        return str(len(self.group.leader.panel_applications)) + " Panel Application(s)" \
+            if self.group.leader.panel_applications else self.status('panel')

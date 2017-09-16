@@ -1,0 +1,19 @@
+<tr>
+  <td width="25">{{ macros.checklist_image(band.group.leader.panel_applications) }}</td>
+  <td><b><a href="../panel_applications/guest?poc_id={{ band.group.leader.id }}">Submit a Panel Idea</a></b></td>
+  <td><i>Deadline:</i> {{ band.deadline_from_model('panel')|datetime_local }}</td>
+</tr>
+<tr>
+  <td colspan="3">
+    {% if not band.group.leader.panel_applications %}
+      Please use the above link to submit ideas for panels you want to run.
+    {% else %}
+      You have already submitted {{ band.group.leader.panel_applications|length }} panel
+      idea{{ band.group.leader.panel_applications|length|pluralize }}.
+      {% if c.APP_LIMIT %}
+        You may submit up to {{ c.APP_LIMIT }} panels for review.
+      {% endif %}
+    {% endif %}
+    <br/></br>
+  </td>
+</tr>
