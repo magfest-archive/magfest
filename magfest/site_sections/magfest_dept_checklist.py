@@ -19,7 +19,10 @@ class Root:
                     attendee=attendee, department=department, slug=slug)
             check_csrf(csrf_token)  # since this form doesn't use our normal utility methods, we need to do this manually
             session.add(item)
-            raise HTTPRedirect('../dept_checklist/index?message={}', 'Thanks for completing the MPoints form!')
+            raise HTTPRedirect(
+                '../dept_checklist/index?department_id={}&message={}',
+                department_id,
+                'Thanks for completing the MPoints form!')
 
         return {'department': department}
 
@@ -38,7 +41,10 @@ class Root:
             check_csrf(csrf_token)  # since this form doesn't use our normal utility methods, we need to do this manually
             item.comments = render('magfest_dept_checklist/allotments.txt', params).decode('utf-8')
             session.add(item)
-            raise HTTPRedirect('../dept_checklist/index?message={}', 'Treasury checklist data uploaded')
+            raise HTTPRedirect(
+                '../dept_checklist/index?department_id={}&message={}',
+                department_id,
+                'Treasury checklist data uploaded')
 
         return {'department': department}
 
@@ -55,6 +61,9 @@ class Root:
                     attendee=attendee, department=department, slug=slug)
             check_csrf(csrf_token)  # since this form doesn't use our normal utility methods, we need to do this manually
             session.add(item)
-            raise HTTPRedirect('../dept_checklist/index?message={}', 'Thanks for completing the tech requirements form!')
+            raise HTTPRedirect(
+                '../dept_checklist/index?department_id={}&message={}',
+                department_id,
+                'Thanks for completing the tech requirements form!')
 
         return {'department': department}
