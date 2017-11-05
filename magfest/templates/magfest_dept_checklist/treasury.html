@@ -2,7 +2,7 @@
 {% block title %}Department Checklist - Tech Ops{% endblock %}
 {% block content %}
 
-<h2>MPoint Needs</h2>
+<h2>MPoint Needs for {{ department.name }}</h2>
 
 <h3><a href="{{ c.TREASURY_DEPT_CHECKLIST_FORM_URL }}">{{ c.EVENT_NAME_AND_YEAR }} MPoints Form</a></h3>
 
@@ -40,6 +40,7 @@
 
 <form method="post" action="treasury">
 {{ csrf_token() }}
+<input type="hidden" name="department_id" value="{{ department.id }}" />
 Once you've filled out the form above OR done nothing if your department does not need MPoints, please click the button below.<br/>
 <br/>
 <input type="submit" name="submitted" value="I Have Completed This Checklist" />

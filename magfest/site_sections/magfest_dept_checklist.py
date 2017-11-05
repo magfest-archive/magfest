@@ -6,43 +6,64 @@ class Root:
     def index(self, session, message=''):
         raise HTTPRedirect('../dept_checklist/?message={}', message)
 
-    def treasury(self, session, submitted=None, csrf_token=None):
+    @department_id_adapter
+    def treasury(self, session, department_id, submitted=None, csrf_token=None):
         attendee = session.admin_attendee()
+        department = session.query(Department).options(
+            subqueryload(Department.dept_checklist_items)).get(department_id)
         if submitted:
-            try:
-                [item] = [item for item in attendee.dept_checklist_items if item.slug == 'treasury']
-            except:
-                item = DeptChecklistItem(slug='treasury', attendee=attendee)
+            slug = 'treasury'
+            item = department.checklist_item_for_slug(slug)
+            if not item:
+                item = DeptChecklistItem(
+                    attendee=attendee, department=department, slug=slug)
             check_csrf(csrf_token)  # since this form doesn't use our normal utility methods, we need to do this manually
             session.add(item)
-            raise HTTPRedirect('../dept_checklist/index?message={}', 'Thanks for completing the MPoints form!')
+            raise HTTPRedirect(
+                '../dept_checklist/index?department_id={}&message={}',
+                department_id,
+                'Thanks for completing the MPoints form!')
 
-        return {}
+        return {'department': department}
 
-    def allotments(self, session, submitted=None, csrf_token=None, **params):
+    @department_id_adapter
+    def allotments(self, session, department_id, submitted=None, csrf_token=None, **params):
         attendee = session.admin_attendee()
+        department = session.query(Department).options(
+            subqueryload(Department.dept_checklist_items)).get(department_id)
         conf = DeptChecklistConf.instances['allotments']
         if submitted:
-            try:
-                [item] = [item for item in attendee.dept_checklist_items if item.slug == 'allotments']
-            except:
-                item = DeptChecklistItem(slug='allotments', attendee=attendee)
+            slug = 'allotments'
+            item = department.checklist_item_for_slug(slug)
+            if not item:
+                item = DeptChecklistItem(
+                    attendee=attendee, department=department, slug=slug)
             check_csrf(csrf_token)  # since this form doesn't use our normal utility methods, we need to do this manually
             item.comments = render('magfest_dept_checklist/allotments.txt', params).decode('utf-8')
             session.add(item)
-            raise HTTPRedirect('../dept_checklist/index?message={}', 'Treasury checklist data uploaded')
+            raise HTTPRedirect(
+                '../dept_checklist/index?department_id={}&message={}',
+                department_id,
+                'Treasury checklist data uploaded')
 
-        return {}
+        return {'department': department}
 
-    def tech_requirements(self, session, submitted=None, csrf_token=None):
+    @department_id_adapter
+    def tech_requirements(self, session, department_id, submitted=None, csrf_token=None):
         attendee = session.admin_attendee()
+        department = session.query(Department).options(
+            subqueryload(Department.dept_checklist_items)).get(department_id)
         if submitted:
-            try:
-                [item] = [item for item in attendee.dept_checklist_items if item.slug == 'tech_requirements']
-            except:
-                item = DeptChecklistItem(slug='tech_requirements', attendee=attendee)
+            slug = 'tech_requirements'
+            item = department.checklist_item_for_slug(slug)
+            if not item:
+                item = DeptChecklistItem(
+                    attendee=attendee, department=department, slug=slug)
             check_csrf(csrf_token)  # since this form doesn't use our normal utility methods, we need to do this manually
             session.add(item)
-            raise HTTPRedirect('../dept_checklist/index?message={}', 'Thanks for completing the tech requirements form!')
+            raise HTTPRedirect(
+                '../dept_checklist/index?department_id={}&message={}',
+                department_id,
+                'Thanks for completing the tech requirements form!')
 
-        return {}
+        return {'department': department}
