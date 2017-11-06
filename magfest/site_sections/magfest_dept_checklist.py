@@ -7,7 +7,9 @@ class Root:
         raise HTTPRedirect('../dept_checklist/?message={}', message)
 
     @department_id_adapter
-    def treasury(self, session, department_id, submitted=None, csrf_token=None):
+    def treasury(self, session, department_id=None, submitted=None, csrf_token=None):
+        if not department_id:
+            raise HTTPRedirect('../dept_checklist/index')
         attendee = session.admin_attendee()
         department = session.query(Department).options(
             subqueryload(Department.dept_checklist_items)).get(department_id)
@@ -27,7 +29,9 @@ class Root:
         return {'department': department}
 
     @department_id_adapter
-    def allotments(self, session, department_id, submitted=None, csrf_token=None, **params):
+    def allotments(self, session, department_id=None, submitted=None, csrf_token=None, **params):
+        if not department_id:
+            raise HTTPRedirect('../dept_checklist/index')
         attendee = session.admin_attendee()
         department = session.query(Department).options(
             subqueryload(Department.dept_checklist_items)).get(department_id)
@@ -49,7 +53,9 @@ class Root:
         return {'department': department}
 
     @department_id_adapter
-    def tech_requirements(self, session, department_id, submitted=None, csrf_token=None):
+    def tech_requirements(self, session, department_id=None, submitted=None, csrf_token=None):
+        if not department_id:
+            raise HTTPRedirect('../dept_checklist/index')
         attendee = session.admin_attendee()
         department = session.query(Department).options(
             subqueryload(Department.dept_checklist_items)).get(department_id)
