@@ -78,9 +78,8 @@
     <br/>
     <input type="checkbox" name="needs_cash" value="yes" onClick="showOrHideCash()"> My department needs cash
     <div id="cash" style="display:none">
-        <a href="#" onClick="$('#prev-allotments').show() ; return false">Click here</a> to see a list of suggested allotments broken down by department.
-        <div id="prev-allotments" style="display:none">
-            Below is a list of suggested allotments based on what each department has needed in the past, adjusted for expected growth and changes in on-site fees.  Feel free to enter these numbers as-is or make changes if you think your department will have different needs than what is shown.
+        <div id="prev-allotments">
+            Below is a list of allotments based on what each department has needed in the past, adjusted for expected growth and changes in on-site fees. If you feel that your department needs a change, email treasury@magfest.org.
             <table class="previous padded">
             <thead>
                 <tr>
@@ -108,7 +107,7 @@
                 </tr>
                 <tr>
                     <td>Charity</td>
-                    <td>75</td>
+                    <td>50</td>
                     <td>20</td>
                     <td>10</td>
                     <td>10</td>
@@ -116,9 +115,9 @@
                 </tr>
                 <tr>
                     <td>LAN</td>
-                    <td>10</td>
-                    <td>20</td>
-                    <td>10</td>
+                    <td>0</td>
+                    <td>8</td>
+                    <td>4</td>
                     <td>0</td>
                     <td class="centered">1</td>
                 </tr>
@@ -128,60 +127,27 @@
                     <td>75</td>
                     <td>75</td>
                     <td>75</td>
-                    <td class="centered">1</td>
-                </tr>
-                <tr>
-                    <td>Merchandise</td>
-                    <td>30</td>
-                    <td>20</td>
-                    <td>20</td>
-                    <td>15</td>
                     <td class="centered">2</td>
                 </tr>
                 <tr>
                     <td>Regdesk</td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>10</td>
+                    <td>20</td>
+                    <td>20</td>
+                    <td>20</td>
                     <td>5</td>
                     <td class="centered">3</td>
                 </tr>
                 <tr>
                     <td>Rock Island</td>
-                    <td>70</td>
+                    <td>30</td>
                     <td>20</td>
                     <td>20</td>
                     <td>10</td>
-                    <td class="centered">1</td>
+                    <td class="centered">2</td>
                 </tr>
             </tbody>
             </table>
         </div>
-
-        <br/> <br/>
-        Number of cash boxes your department needs at one time:
-        <input type="text" name="cash_boxes" size="3" />
-
-        <br/> <br/>
-        For each cash box you recieve:
-        <table style="width:auto">
-        <tr>
-            <td>Number of $1 Bills</td>
-            <td><input type="text" name="bills_1" size="3" /></td>
-        </tr>
-        <tr>
-            <td>Number of $5 Bills</td>
-            <td><input type="text" name="bills_5" size="3" /></td>
-        </tr>
-        <tr>
-            <td>Number of $10 Bills</td>
-            <td><input type="text" name="bills_10" size="3" /></td>
-        </tr>
-        <tr>
-            <td>Number of $20 Bills</td>
-            <td><input type="text" name="bills_20" size="3" /></td>
-        </tr>
-        </table>
     </div>
 
     <br/> <br/>
@@ -191,10 +157,6 @@
     <br/> <br/>
     Notes:
     <ul>
-        <li>
-            If we see a significant difference between cash requests here and the suggested values,
-            then we will contact you to discuss the difference.
-        </li>
         <li>
             Answers here are not firm.  They will be a basis for final determination along with resource availability
             and overall need.  For example, if there are schedule conflicts, Registration will probably take priority.
