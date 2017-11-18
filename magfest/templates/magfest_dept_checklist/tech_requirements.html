@@ -9,7 +9,9 @@
 <form method="post" action="tech_requirements">
 {{ csrf_token() }}
 <input type="hidden" name="department_id" value="{{ department.id }}" />
-Once you've filled out the form above, or if you don't need any equipment for your department, please click the button below.<br/>
+Once you've filled out the linked form above, please click the button below. Your department must fill out the form, 
+even if you don't need anything. If you have any questions, please contact TechOps on Slack ( #techops ) or 
+via email ( techops@magfest.org ).<br/>
 <br/>
 <input type="submit" name="submitted" value="I Have Filled out the Tech Requirements Form" />
 </form>
